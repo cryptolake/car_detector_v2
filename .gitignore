@@ -4,9 +4,11 @@ models/
 __pycache__/
 *.py[cod]
 *$py.class
-static/uploads/
+static/uploads/*
 certbot/
-uploads/
+*/uploads/*
+*.jpeg
+*.png
 
 # C extensions
 *.so

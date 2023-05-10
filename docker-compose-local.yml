@@ -20,6 +20,12 @@ services:
     depends_on:
       - mongodb
 
+  frontend: 
+    container_name: frontend
+    restart: always
+    build: ./frontend
+    ports:
+      - "3000:3000"
 
   mongodb:
     container_name: mongodb
