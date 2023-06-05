@@ -32,26 +32,26 @@ async def on_message(message):
                     break
                 url = attach.url
                 image = requests.get(url, stream=True).raw
-                prediction = Pred(image, 0.9, top)
+                prediction = Pred(image, 50, 0.9, top)
                 img_rec = ImageDraw.Draw(prediction.image)
                 cars = prediction.prediction
                 await message.channel.send(f"Found {len(cars)} cars.")
                 if len(cars) > 0:
-                    for car, box in cars:
-                        x0, y0, x1, y1 = box
+                    for car in cars:
+                        box = car.box
+                        x0, x1, y0, y1 = box
                         img_rec.rectangle(((x0, y0), (x1, y1)), outline='Red', width=3)
-                        cr = car[0]
-                        img_rec.text((x0, y0), text=f"Brand: {cr['Brand']}\nModel: {cr['Model']}\nYear: {cr['Year']}\nColor: {cr['Color']}\nProb: {cr['Prob']}", 
+                        cr = car.predictions[0]
+                        img_rec.text((x0, y0), text=cr.__str__(), 
                                      font=ImageFont.truetype("arial.ttf", size=int((x1-x0)//25)))
                         await message.channel.send("\n-----------------------------------------------------------------------\n")
-                        for i, cr in enumerate(car):
+                        for i, cr in enumerate(car.predictions):
                             if i != 0:
                                 await message.channel.send('OR')
-                            await message.channel.send(f"Brand: {cr['Brand']}\nModel: {cr['Model']}\nYear: {cr['Year']}\nColor: {cr['Color']}\nProb: {cr['Prob']}")
+                            await message.channel.send(cr.__str__())
                     await message.channel.send("\n-----------------------------------------------------------------------\n")
                     prediction.image.save('image.png')
                     await message.channel.send(file=discord.File('image.png'))
-
 
         else:
             await message.channel.send("send an attachement.")

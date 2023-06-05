@@ -1,0 +1,27 @@
+{% extends 'shared/_layout.html' %}
+
+{% block content %}
+<div class="container">
+<img class="img-fluid" src="data:image/jpeg;base64,{{ image | safe }}" alt="">
+</div>
+<canvas id="canvas"></canvas>
+<div class="container">
+	{% if cars|length > 0 %}
+	{% for car in cars %}
+	<div class="row m-3">
+		<h2> Car {{ loop.index }}:</h2>
+		{% for cr in car.predictions %}
+			<div class="col">{{ cr.__str__() }}</div>
+		{% endfor %}
+	</div>
+	{% endfor %}
+	{% else %}
+	<div class="container-fluid">
+		<h2>There is no cars in the picture!!</h2>
+	</div>
+	{% endif %}
+</div>
+
+
+	{% endblock %}
+

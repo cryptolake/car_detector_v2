@@ -1,0 +1,27 @@
+{% extends 'shared/_layout.html' %}
+
+{% block content %}
+<form id="carform" action="/detect" method='POST' enctype="multipart/form-data" class="p-2 container">
+
+    <div class="p-2 form-group">
+        <label for="age">Image:</label>
+		<input type="file" id="image" name="image">
+    </div>
+
+    <div class="p-2 form-group">
+        <label for="age">threshold:</label>
+        <input class="form-control" type="number" step='any' id="threshold" name="threshold"></input>
+    </div>
+
+    <div class="p-2 form-group">
+        <label for="bmi">Top:</label>
+        <input class="form-control" type="number" id="Top" name="top" step=any></input>
+    </div>
+
+    <div class="p-2 form-group">
+        <label for="ap_h">Minimum car pixel size:</label>
+        <input class="form-control" type="number" id="min_size" name="min_size"></input>
+    </div>
+        <input type="submit" value="Submit" class="btn btn-primary mb-2" />
+</form>
+{% endblock %}

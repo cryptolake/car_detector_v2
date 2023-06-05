@@ -9,6 +9,7 @@ if modelpath is None or colorpath is None:
     raise AttributeError("Use os env MODEL and COLOR for models path.")
 brand_model = load_learner(modelpath)
 color = load_learner(colorpath)
-extraction_model = YolosForObjectDetection.from_pretrained('hustvl/yolos-tiny')
-image_processor = YolosImageProcessor.from_pretrained("hustvl/yolos-tiny")
+extraction_model = YolosForObjectDetection.from_pretrained('hustvl/yolos-small')
+image_processor = YolosImageProcessor.from_pretrained("hustvl/yolos-small")
 from .detector import Predict as Pred
+from .draw import draw_bbox
