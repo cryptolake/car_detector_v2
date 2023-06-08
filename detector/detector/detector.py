@@ -43,7 +43,7 @@ class Predict:
                                                                 threshold=threshold,
                                                                 target_sizes=target_sizes)[0]
         for _, label, box in zip(results["scores"], results["labels"], results["boxes"]):
-            if extraction_model.config.id2label[label.item()] in ['car', 'truck']:
+            if extraction_model.config.id2label[label.item()] == 'car':
                 x0, y0, x1, y1 = np.round(box.tolist()).astype(np.int64)
                 if (x1-x0) > min_size and (y1-y0) > min_size:
                     boxes.append((x0, x1, y0, y1))
