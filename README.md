@@ -18,3 +18,13 @@ Car Detector is a SOTA car extraction and classifier it uses multiple models in 
 
 * Navigate to `127.0.0.1:8000`
 
+# Examples
+
+* Example 1:
+![example 1](./examples/ex1.png)
+
+* Example 2:
+![example 2](./examples/ex2.png)
+
+* Example 3:
+![example 3](./examples/ex3.png)
